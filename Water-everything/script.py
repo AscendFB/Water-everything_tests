@@ -102,7 +102,7 @@ class Water_everything(object):
             self.sequences = []
             self.water_sequence = []
             for seq in app_sequences:
-                if seq['name'] == 'FW_water_everything':
+                if seq['name'] == 'FW_Water_everything':
                   self.water_sequence.append(seq['id'])
                   self.found_sequence=1
                   a.check_if_sequence_found()
