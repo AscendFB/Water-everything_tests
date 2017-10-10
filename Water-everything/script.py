@@ -129,9 +129,9 @@ class Water_everything(object):
 
            
     def loop_plant_points(self): 
-        count = 0                               #Counter to limit the points for tests.      
+       # count = 0                               #Counter to limit the points for tests.      
         for plant in self.sorted_coords:
-                if count < 3:
+                #if count < 3:
                    print ("moving to points")
                    CeleryPy.move_absolute(
                     location=[plant['x'],plant['y'] ,0],
@@ -140,7 +140,7 @@ class Water_everything(object):
                    CeleryPy.execute_sequence(sequence_id= self.seq_id_as_int)
                    print(self.seq_id_as_int)
                    self.sequence_done = True
-                   count +=1
+                  # count +=1
 
   
           
