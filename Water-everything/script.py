@@ -28,7 +28,7 @@ class Water_everything(object):
         self.sorted_coords = {'sorted':[]}
         self.found_sequence=0
         self.search_sequence_counter=0
-
+        self.sequence_done=False
         self.seq_id_as_int = 0
 
         
@@ -105,7 +105,8 @@ class Water_everything(object):
                 if seq['name'] == 'FW_Water_everything':
                   self.water_sequence.append(seq['id'])
                   self.found_sequence=1
-                  a.check_if_sequence_found()
+        a.check_if_sequence_found()
+
                   
                  
 
@@ -114,13 +115,16 @@ class Water_everything(object):
                 self.water_sequence[:] = []
                 log("No watering sequence found. I will create one.",message_type ='info', title = 'Water-everything')
                 a.create_sequence()
-                self.search_sequence_counter +=1 
-                                                                             
+                self.search_sequence_counter +=1                                                                              
         if self.found_sequence == 1:
                 [int(i) for i in self.water_sequence]
                 self.seq_id_as_int = int(i)
-                log("Found the watering sequence.",message_type ='info', title = 'Water-everything')
-                a.loop_plant_points()
+                if self.sequence_done == False:
+                    log("Found the watering sequence.",message_type ='info', title = 'Water-everything')
+                    a.loop_plant_points()
+
+
+                
                
 
            
@@ -135,7 +139,9 @@ class Water_everything(object):
                     speed=800)
                    CeleryPy.execute_sequence(sequence_id= self.seq_id_as_int)
                    print(self.seq_id_as_int)
+                   self.sequence_done = True
                    count +=1
+
   
           
     def count_downloaded_plants(self):
@@ -152,7 +158,7 @@ class Water_everything(object):
             print(r, r.json())
             self.response = r
 
-        if self.search_sequence_counter <2:
+        if self.search_sequence_counter <3:
          with Sequence("FW_Water_everything", "green", upload) as s:
             s.write_pin(number = 9,value = 1,mode = 0)
             s.wait(milliseconds=2500)
@@ -176,5 +182,4 @@ if __name__ == "__main__":
     a.load_plants_from_web_app()
     a.count_downloaded_plants()
     a.load_sequences_from_app()
-    a.check_if_sequence_found()
 
