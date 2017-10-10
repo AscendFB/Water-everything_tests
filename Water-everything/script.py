@@ -161,6 +161,7 @@ class Water_everything(object):
             log("Cant create sequence because this name already exists. Check for upper- and lowercases.",message_type ='info', title = 'Water-everything')
         if self.response.status_code == 200:
             log("Created a sequence named FW_Water_everything.",message_type ='info', title = 'Water-everything')
+            CeleryPy.sync()
             a.load_sequences_from_app()
         else:
             print("There was an Error creating the sequence.")

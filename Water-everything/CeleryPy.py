@@ -213,6 +213,21 @@ def data_update(endpoint, ids_=None):
 
 
 @_print_json
+def sync():
+    """Celery Script to intiate the sync.
+
+    Kind:
+        sync
+    Arguments:
+        
+    """
+    args = {}
+    _sync = create_node(kind='sync',args=args)
+    return _sync
+
+
+
+@_print_json
 def send_message(message='Hello World!', message_type='success', channel=None):
     """Celery Script to send a message.
 
