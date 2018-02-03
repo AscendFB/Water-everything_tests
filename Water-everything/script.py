@@ -29,18 +29,15 @@ class Water_everything(object):
         self.found_sequence=0
         self.search_sequence_counter=0
         self.sequence_done=False
-        self.seq_id_as_int = 0
-
-        
+        self.seq_id_as_int = 0  
         self.sequences = []
         self.water_sequence = []
-
         # API requests setup
         try:
             api_token = os.environ['API_TOKEN']
         except KeyError:
  #           api_token = 'x.eyJpc3MiOiAiLy9zdGFnaW5nLmZhcm1ib3QuaW86NDQzIn0.x'
-             api_token = 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJoZWhlMTIzNEBob3RtYWlsLmRlIiwiaWF0IjoxNTA3Mzc2NTY2LCJqdGkiOiI2ODQ1M2NiZC1kMTJkLTQxOTktYTdjNC1iNTY2ZDU1YzJmMDEiLCJpc3MiOiIvL215LmZhcm1ib3QuaW86NDQzIiwiZXhwIjoxNTEwODMyNTY2LCJtcXR0IjoibXF0dC5mYXJtYm90LmlvIiwib3NfdXBkYXRlX3NlcnZlciI6Imh0dHBzOi8vYXBpLmdpdGh1Yi5jb20vcmVwb3MvZmFybWJvdC9mYXJtYm90X29zL3JlbGVhc2VzL2xhdGVzdCIsImZ3X3VwZGF0ZV9zZXJ2ZXIiOiJodHRwczovL2FwaS5naXRodWIuY29tL3JlcG9zL0Zhcm1Cb3QvZmFybWJvdC1hcmR1aW5vLWZpcm13YXJlL3JlbGVhc2VzL2xhdGVzdCIsImJvdCI6ImRldmljZV8xNyJ9.zp9OTN54jIzx18efKaliu0EuPl0AnzX7igd0rxaON1pdEqzrbwg-zGRv-1DI2AmQhjpb_472pV86yA2QOiqahmzum8z259Y4IVB1HsVXwhIBzOuCDzXuD_hFToRxoqtbTU4ySDaCudH8nuODin9B0SjzJgqEay_R1P8qXgrhpZKIrzRuzrfgWZDLbeD7Vmqm-SDNg0vKe0dvYNTrHVF6Yc0rO807U9TKM0uBN5IiPlwUKf3UHHCV-C0-t0fcFFqKaVo0Q6SFZcqWucwcqu3uOtgkqM-h8uIDk1eQytUTvKK0MTZ56Kh91VTXQMy3_9MlViH866r70o72w5OzNqljTA'
+            api_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1bmtub3duIiwic3ViIjoxNywiaWF0IjoxNTE3Njc4NjYwLCJqdGkiOiJhZDNhNmY1OS0zOGM4LTQ5NjctODdhZC03ZjQ4NjQ1MmQ3OGQiLCJpc3MiOiIvL215LmZhcm1ib3QuaW86NDQzIiwiZXhwIjoxNTIxMTM0NjYwLCJtcXR0IjoiYnJpc2stYmVhci5ybXEuY2xvdWRhbXFwLmNvbSIsImJvdCI6ImRldmljZV8xNyIsInZob3N0IjoidmJ6Y3hzcXIiLCJtcXR0X3dzIjoid3NzOi8vYnJpc2stYmVhci5ybXEuY2xvdWRhbXFwLmNvbTo0NDMvd3MvbXF0dCIsIm9zX3VwZGF0ZV9zZXJ2ZXIiOiJodHRwczovL2FwaS5naXRodWIuY29tL3JlcG9zL2Zhcm1ib3QvZmFybWJvdF9vcy9yZWxlYXNlcy9sYXRlc3QiLCJpbnRlcmltX2VtYWlsIjoiaGVoZTEyMzRAaG90bWFpbC5kZSIsImZ3X3VwZGF0ZV9zZXJ2ZXIiOiJERVBSRUNBVEVEIiwiYmV0YV9vc191cGRhdGVfc2VydmVyIjoiaHR0cHM6Ly9hcGkuZ2l0aHViLmNvbS9yZXBvcy9GYXJtQm90L2Zhcm1ib3Rfb3MvcmVsZWFzZXMvOTUxMDc2NSJ9.p5wp-F54ke4Ftdn2Q-mbrgl--ZeMoW55YfmiSF_CCflkdDhb_GY9S_kfpHYeuruxyv0fcu010M5-k9QrT2JSFGUUDcIIBn2XOhI_TFAo0GalC3i--4_m6EwgLkX1_zOQHfuPKzKtK3EhSH9f4fi2x3PmXxE3kI0ule07Z3gyEpmW8mf-FgaDoB_rT8sLtIxC90AkL4zcLo2A1F2Atf734rVu_rq8ZN9C6DxQ-9he3OIdf62_FaSUgknxUy45b9aE4CxpEI243i9kKzOMRC_hMNBJet-FB1fAteACNIRiSWq2tL_aa0gJ-2_BzQJ_2Q-9KF9xAETv9wk2f9MiKDQM7Q'
         try:
             encoded_payload = api_token.split('.')[1]
             encoded_payload += '=' * (4 - len(encoded_payload) % 4)
