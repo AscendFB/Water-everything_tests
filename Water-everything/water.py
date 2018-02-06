@@ -7,7 +7,7 @@ import base64
 import requests
 import numpy as np
 from time import sleep
-
+from sequence_writer import Sequence
 
 #API_TOKEN = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1bmtub3duIiwic3ViIjoxNywiaWF0IjoxNTE3OTA1MTExLCJqdGkiOiI4NDdmNGVjMC03ZmZjLTQ4MzItODJmMy1hZjUwYThlMDMwYmYiLCJpc3MiOiIvL215LmZhcm1ib3QuaW86NDQzIiwiZXhwIjoxNTIxMzYxMTExLCJtcXR0IjoiYnJpc2stYmVhci5ybXEuY2xvdWRhbXFwLmNvbSIsImJvdCI6ImRldmljZV8xNyIsInZob3N0IjoidmJ6Y3hzcXIiLCJtcXR0X3dzIjoid3NzOi8vYnJpc2stYmVhci5ybXEuY2xvdWRhbXFwLmNvbTo0NDMvd3MvbXF0dCIsIm9zX3VwZGF0ZV9zZXJ2ZXIiOiJodHRwczovL2FwaS5naXRodWIuY29tL3JlcG9zL2Zhcm1ib3QvZmFybWJvdF9vcy9yZWxlYXNlcy9sYXRlc3QiLCJpbnRlcmltX2VtYWlsIjoiaGVoZTEyMzRAaG90bWFpbC5kZSIsImZ3X3VwZGF0ZV9zZXJ2ZXIiOiJERVBSRUNBVEVEIiwiYmV0YV9vc191cGRhdGVfc2VydmVyIjoiaHR0cHM6Ly9hcGkuZ2l0aHViLmNvbS9yZXBvcy9GYXJtQm90L2Zhcm1ib3Rfb3MvcmVsZWFzZXMvOTUxMDc2NSJ9.mHUQLkKLOsw4UXMwpq7Yl-45NRFeuP0mIw3o-c1aSYTY7hjLPydsam9kOGULf04hhsJEOdBdUtjOGcXpftbKtnZ1pSNbftRNfUKK8Vth7r94jd1l4-SCF7Oz7P4OxDCBAFOQqu3CM3Rr-kXKm_Mkw_qI2XYto8GATtLSyAby6ZU1ci-WHikfYJpSMZj7LZGDfiqPNbqV6OphmllktZUeE88ji3Qxn7dhNsTYaYKC3d-d_rlRB0J7cP-YEwUqpcU1qcWvHh_yT5AaUjtTYjOqjenbzqK9qvKew9p2CqWqMKuSUrxcsSaHQJBia1iKEdVnCQVNtsOJ39m-wQNc8Ie-Qg'
 
@@ -29,7 +29,7 @@ class Water_everything():
             self.sequences = []
             self.water_sequence = []
 
-            API_TOKEN = os.environ['API_TOKEN']
+            API_TOKEN = os.environ['FARMWARE_TOKEN']
             self.headers = {'Authorization': 'Bearer {}'.format(FARMWARE_TOKEN),
                             'content-type': "application/json"}
             encoded_payload = API_TOKEN.split('.')[1]
