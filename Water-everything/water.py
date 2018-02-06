@@ -25,9 +25,15 @@ def log(message, message_type):
 
 def move(x,y,z,speed):
     'Move to these coordinates'
+    location['x']= x
+    location['y']= y
+    location['z']= z
+    offset ['x'] = 0
+    offset ['y']= 0
+    offset ['z']= 0
     data = json.dumps(
         {"kind": "move_absolute",
-            "args": {"location": {'x': x, 'y': y, 'z': z, 'speed': speed}}})
+            "args": {"location":location, "speed": speed, "offset":offset}})
     requests.post(os.environ['FARMWARE_URL'] + 'api/v1/celery_script',
                     data=data, headers=headers)
 
