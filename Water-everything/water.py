@@ -26,8 +26,8 @@ def log(message, message_type):
 def move(x,y,z,speed):
     'Move to these coordinates'
     args={}
-    args['location'] = _coordinate_node(*location)
-    args['offset'] = _coordinate_node(*offset)
+    args['location'] = _coordinate_node(x,y,z)
+    args['offset'] = _coordinate_node(0,0,0)
     args['speed'] = speed
     data = json.dumps(
         {"kind": "move_absolute",
@@ -148,7 +148,7 @@ class Water_everything():
                     [int(i) for i in self.water_sequence]
                     self.seq_id_as_int = int(i)
                     if self.sequence_done == False:
-                        log('Found the watering sequence.','info')
+ #                       log('Found the watering sequence.','info')
                         a.loop_plant_points()
 
 
@@ -159,7 +159,7 @@ class Water_everything():
             for plant in self.sorted_coords:
                     #if count < 3:
                        print ("moving to points")
-                       log('moving','info')
+#                       log('moving','info')
 #                      data = {"kind": "move_absolute", "args": {'x': plant['x'], 'y': plant['y'], 'z': 0, 'speed': 800}}
 #                      moving_coords = json.dumps(data)
 #                       r = requests.post(self.api_url + 'celery_script', data=moving_coords, headers= self.headers)
