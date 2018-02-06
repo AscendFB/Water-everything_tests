@@ -138,10 +138,11 @@ class Water_everything():
             for plant in self.sorted_coords:
                     #if count < 3:
                        print ("moving to points")
+                       log('moving','info')
 #                      data = {"kind": "move_absolute", "args": {'x': plant['x'], 'y': plant['y'], 'z': 0, 'speed': 800}}
 #                      moving_coords = json.dumps(data)
 #                       r = requests.post(self.api_url + 'celery_script', data=moving_coords, headers= self.headers)
-                       move(plant['x'],plant['y'],0,800)
+#                       move(plant['x'],plant['y'],0,800)
                        #CeleryPy.execute_sequence(sequence_id= self.seq_id_as_int)
 #                       seq_number = {"kind": "execute", "args": {"sequence_id": self.seq_id_as_int}}
                        run_sequence(seq_id_as_int)
