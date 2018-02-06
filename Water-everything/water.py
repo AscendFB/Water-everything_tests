@@ -20,9 +20,6 @@ def log(message, message_type):
                     data=payload, headers=headers)
 
 class test():
-    def init(self):
-
-
     def api_get(self, endpoint):
                 """GET from an API endpoint."""
  #               response = requests.get(self.api_url + endpoint, headers={
