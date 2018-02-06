@@ -33,13 +33,13 @@ class Water_everything():
                 'content-type': "application/json"}
             #self.headers = {'Authorization': 'Bearer {}'.format(API_TOKEN),
             #                'content-type': "application/json"}
-            encoded_payload = API_TOKEN.split('.')[1]
-            encoded_payload += '=' * (4 - len(encoded_payload) % 4)
-            json_payload = base64.b64decode(encoded_payload).decode('utf-8')
-            server = json.loads(json_payload)['iss']
-            self.api_url = 'http{}:{}/api/'.format(
-                's' if not any([h in server for h in ['localhost', '192.168.']])
-                else '', server)
+            #encoded_payload = API_TOKEN.split('.')[1]
+            #encoded_payload += '=' * (4 - len(encoded_payload) % 4)
+            #json_payload = base64.b64decode(encoded_payload).decode('utf-8')
+            #server = json.loads(json_payload)['iss']
+            #self.api_url = 'http{}:{}/api/'.format(
+            #    's' if not any([h in server for h in ['localhost', '192.168.']])
+            #    else '', server)
 
 
     def api_url(self):
