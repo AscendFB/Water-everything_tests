@@ -1,0 +1,12 @@
+{
+ "package": "Water-everything2",
+ "language": "python",
+ "author": "AscendFB",
+ "description": "Waters all the plants added in Farm-Designer.",
+ "version": "2.0.0",
+ "min_os_version_major": 3,
+ "url": "https://raw.githubusercontent.com/AscendFB/Water-everything_tests/master/manifest.json",
+ "zip": "https://github.com/AscendFB/Water-everything_tests/archive/master.zip",
+ "executable": "python",
+ "args": ["Water-everything_tests-master/Water-everything/water.py"]
+}
