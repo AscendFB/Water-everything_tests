@@ -26,7 +26,7 @@ class test():
                 #'Authorization': 'bearer {}'.format(os.environ['FARMWARE_TOKEN']),
                 #'content-type': "application/json"})
                 
-                response = requests.get('https://my.farmbot.io/api/points', headers= {'Authorization': 'Bearer ' + os.environ['API_TOKEN'],
+                response = requests.get('https://my.farmbot.io/api/v1/points', headers= {'Authorization': 'Bearer ' + os.environ['API_TOKEN'],
                    'content-type': "application/json"})
                 #self.api_response_error_collector(response)
                 #self.api_response_error_printer()
