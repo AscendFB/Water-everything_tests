@@ -21,7 +21,9 @@ def log(message, message_type):
 
 def api_get(self, endpoint):
             """GET from an API endpoint."""
-            response = requests.get(self.api_url + endpoint, headers=self.headers)
+            response = requests.get(self.api_url + endpoint, headers={
+            'Authorization': 'bearer {}'.format(os.environ['FARMWARE_TOKEN']),
+            'content-type': "application/json"})
             #self.api_response_error_collector(response)
             #self.api_response_error_printer()
             return response
