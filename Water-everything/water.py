@@ -27,7 +27,7 @@ def move(x,y,z,speed):
     'Move to these coordinates'
     data = json.dumps(
         {"kind": "move_absolute",
-            "args": {'x': x, 'y': y, 'z': z, 'speed': speed}})
+            "args": {"location": {'x': x, 'y': y, 'z': z, 'speed': speed}}})
     requests.post(os.environ['FARMWARE_URL'] + 'api/v1/celery_script',
                     data=data, headers=headers)
 
@@ -142,7 +142,7 @@ class Water_everything():
 #                      data = {"kind": "move_absolute", "args": {'x': plant['x'], 'y': plant['y'], 'z': 0, 'speed': 800}}
 #                      moving_coords = json.dumps(data)
 #                       r = requests.post(self.api_url + 'celery_script', data=moving_coords, headers= self.headers)
-#                       move(plant['x'],plant['y'],0,800)
+                       move(plant['x'],plant['y'],0,800)
                        #CeleryPy.execute_sequence(sequence_id= self.seq_id_as_int)
 #                       seq_number = {"kind": "execute", "args": {"sequence_id": self.seq_id_as_int}}
                        run_sequence(seq_id_as_int)
@@ -152,7 +152,7 @@ class Water_everything():
         
     def count_downloaded_plants(self):
             plant_count = len(self.plants['known'])
-            log( '{} plants were detected.' .format(plant_count),'info')
+#            log( '{} plants were detected.' .format(plant_count),'info')
 
     
     #def create_sequence(self):
