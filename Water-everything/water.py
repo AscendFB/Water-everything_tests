@@ -21,22 +21,16 @@ def log(message, message_type):
 
 class test():
     def init(self):
-        API_TOKEN = os.environ['API_TOKEN']
-        headers = {'Authorization': 'Bearer {}'.format(API_TOKEN),
-                            'content-type': "application/json"}
-        encoded_payload = API_TOKEN.split('.')[1]
-        encoded_payload += '=' * (4 - len(encoded_payload) % 4)
-        json_payload = base64.b64decode(encoded_payload).decode('utf-8')
-        server = json.loads(json_payload)['iss']
-        self.api_url = 'http{}:{}/api/'.format(
-                's' if not any([h in server for h in ['localhost', '192.168.']])
-                else '', server)
+
 
     def api_get(self, endpoint):
                 """GET from an API endpoint."""
-                response = requests.get(self.api_url + endpoint, headers={
-                'Authorization': 'bearer {}'.format(os.environ['FARMWARE_TOKEN']),
-                'content-type': "application/json"})
+ #               response = requests.get(self.api_url + endpoint, headers={
+                #'Authorization': 'bearer {}'.format(os.environ['FARMWARE_TOKEN']),
+                #'content-type': "application/json"})
+                
+                response = requests.get('https://my.farmbot.io/api/points', headers= {'Authorization': 'Bearer ' + os.environ['API_TOKEN'],
+                   'content-type': "application/json"})
                 #self.api_response_error_collector(response)
                 #self.api_response_error_printer()
                 log('ok','info')
