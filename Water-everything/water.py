@@ -30,7 +30,7 @@ class Water_everything():
             self.water_sequence = []
 
             API_TOKEN = os.environ['API_TOKEN']
-            self.headers = {'Authorization': 'Bearer {}'.format(API_TOKEN),
+            self.headers = {'Authorization': 'Bearer {}'.format(FARMWARE_TOKEN),
                             'content-type': "application/json"}
             encoded_payload = API_TOKEN.split('.')[1]
             encoded_payload += '=' * (4 - len(encoded_payload) % 4)
@@ -50,7 +50,7 @@ class Water_everything():
     def post(self, wrapped_data):
                 """Send the Celery Script command."""
                 headers = {
-                    'Authorization': 'bearer {}'.format(API_TOKEN),
+                    'Authorization': 'bearer {}'.format(FARMWARE_TOKEN),
                     'content-type': "application/json"}
                 payload = json.dumps(wrapped_data)
                 requests.post(self.api_url + 'celery_script',
