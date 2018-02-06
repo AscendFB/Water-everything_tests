@@ -28,18 +28,17 @@ class Water_everything():
             self.seq_id_as_int = 0  
             self.sequences = []
             self.water_sequence = []
-            self.headers = {
-                'Authorization': 'bearer {}'.format(os.environ['FARMWARE_TOKEN']),
-                'content-type': "application/json"}
-            #self.headers = {'Authorization': 'Bearer {}'.format(API_TOKEN),
-            #                'content-type': "application/json"}
-            #encoded_payload = API_TOKEN.split('.')[1]
-            #encoded_payload += '=' * (4 - len(encoded_payload) % 4)
-            #json_payload = base64.b64decode(encoded_payload).decode('utf-8')
-            #server = json.loads(json_payload)['iss']
-            #self.api_url = 'http{}:{}/api/'.format(
-            #    's' if not any([h in server for h in ['localhost', '192.168.']])
-            #    else '', server)
+
+            API_TOKEN = os.environ['API_TOKEN']
+            self.headers = {'Authorization': 'Bearer {}'.format(API_TOKEN),
+                            'content-type': "application/json"}
+            encoded_payload = API_TOKEN.split('.')[1]
+            encoded_payload += '=' * (4 - len(encoded_payload) % 4)
+            json_payload = base64.b64decode(encoded_payload).decode('utf-8')
+            server = json.loads(json_payload)['iss']
+            self.api_url = 'http{}:{}/api/'.format(
+                's' if not any([h in server for h in ['localhost', '192.168.']])
+                else '', server)
 
 
     def api_url(self):
