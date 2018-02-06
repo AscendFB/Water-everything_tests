@@ -25,17 +25,32 @@ def log(message, message_type):
 
 def move(x,y,z,speed):
     'Move to these coordinates'
-    location['x']= x
-    location['y']= y
-    location['z']= z
-    offset ['x'] = 0
-    offset ['y']= 0
-    offset ['z']= 0
+    args={}
+    args['location'] = _coordinate_node(*location)
+    args['offset'] = _coordinate_node(*offset)
+    args['speed'] = speed
     data = json.dumps(
         {"kind": "move_absolute",
-            "args": {"location":location, "speed": speed, "offset":offset}})
+            "args": {"location":args['location'], "speed": args['speed'], "offset":args['offset']}})
     requests.post(os.environ['FARMWARE_URL'] + 'api/v1/celery_script',
                     data=data, headers=headers)
+
+def _coordinate_node(x_coord, y_coord, z_coord):
+    coordinates = _encode_coordinates(x_coord, y_coord, z_coord)
+    coordinate = create_node(kind='coordinate', args=coordinates)
+    return coordinate
+def _encode_coordinates(x_coord, y_coord, z_coord):
+    coords = {}
+    coords['x'] = x_coord
+    coords['y'] = y_coord
+    coords['z'] = z_coord
+    return coords
+def create_node(kind=None, args=None):
+    """Create a kind, args Celery Script node."""
+    node = {}
+    node['kind'] = kind
+    node['args'] = args
+    return node
 
 def run_sequence(id):
     'Executes the sequence via ID'
