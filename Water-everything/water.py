@@ -41,7 +41,7 @@ class Water_everything():
                 server = json.loads(json_payload)['iss']
             except:  # noqa pylint:disable=W0702
                 server = '//my.farmbot.io'
-            self.api_url = 'http{}:{}/api/'.format(
+            self.api_url = 'http{}:{}/api/v1/'.format(
                 's' if not any([h in server for h in ['localhost', '192.168.']])
                 else '', server)
             self.headers = {'Authorization': 'Bearer {}'.format(api_token),
