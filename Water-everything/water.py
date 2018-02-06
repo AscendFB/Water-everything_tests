@@ -39,6 +39,8 @@ class test():
                 'content-type': "application/json"})
                 #self.api_response_error_collector(response)
                 #self.api_response_error_printer()
+                log('ok','info')
+                log(response,'info')
                 return response
 
 
